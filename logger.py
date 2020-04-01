@@ -1,11 +1,14 @@
 import warnings
 import logging
 import sys
+import os
+
+filepath = os.path.join(os.environ.get('USERPROFILE', os.curdir), 'root.log')
 
 
 class Logger():
     def __init__(self, name='root', stream_level=logging.INFO,
-                 filepath='root.log', encoding='utf-8',
+                 filepath=filepath, encoding='utf-8',
                  pattern='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
         """ Init logger, and add stream and file handler,
         name: logger name,
