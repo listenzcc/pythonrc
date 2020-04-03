@@ -8,12 +8,13 @@ filepath = os.path.join(os.environ.get('USERPROFILE', os.curdir), 'root.log')
 
 class Logger():
     def __init__(self, name='root', stream_level=logging.INFO,
-                 filepath=filepath, encoding='utf-8',
-                 pattern='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
+                 filepath=filepath,
+                 encoding='utf-8',
+                 pattern='%(created)f - %(name)s - %(levelname)s - %(module)s:%(funcName)s - %(message)s'):
         """ Init logger, and add stream and file handler,
         name: logger name,
         stream_level: level of stream handler,
-        filepath: path of log file,
+        filedir: dir of log file,
         encoding: encoding of log file,
         pattern: pattern of logging entries. """
         # Make logger
@@ -49,6 +50,7 @@ class Logger():
         self.file_handler.setLevel(level)
         # Add
         self.logger.addHandler(self.file_handler)
+        self.logger.filehandler = open(filepath, 'a')
 
 
 default_logger = Logger().logger
