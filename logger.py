@@ -3,7 +3,10 @@ import logging
 import sys
 import os
 
-filepath = os.path.join(os.environ.get('USERPROFILE', os.curdir), 'root.log')
+profilename = 'USERPROFILE'
+if sys.platform == 'linux':
+    profilename = 'HOME'
+filepath = os.path.join(os.environ.get(profilename, os.curdir), 'root.log')
 
 
 class Logger():
