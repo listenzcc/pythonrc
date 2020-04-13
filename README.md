@@ -13,15 +13,17 @@ Instead of setting them on every project, this project provides an easy way as .
 Clone the repository to a path, like [this](~/.python).
 
 Add the path into *$env:PYTHONPATH*, to make sure python app can find the customized modules.
-*Note that, ipython and python may use different rc profile*
+
+*Note that, ipython and python may use different .rc profile.*
 
 ## Logger module
 
 Custom setting of logging module.
 
-*Issue: the logger is thread-save, but not process-save.
+*Known-issue: the logger is thread-save, but not process-save,
 which means that default_logger file may suffer logging lost or mix-up,
-when multi process conflict on writting logging file*
+when multi process conflict on writting logging file,
+one solution is use different logging file when facing multi-process situation.*
 
 ```python
 # Implement
@@ -33,7 +35,7 @@ Default settings
 | -------- | ---------------------------------------------------- |
 | name     | root                                                 |
 | encoding | utf-8                                                |
-| pattern  | %(asctime)s - %(name)s - %(levelname)s - %(module)s:%(funcName)s - %message)s |
+| pattern  | %(created)f - %(name)s - %(levelname)s - %(module)s:%(funcName)s - %message)s |
 | filepath | root.log                                             |
 | stream   | sys.stdout                                           |
 
